@@ -1,33 +1,36 @@
 import { Formik, Form, Field } from "formik";
-import { FaUser } from "react-icons/fa";
-import { BiSolidPhone } from "react-icons/bi";
-import css from "./ContactForm.module.css";
+import css from "./LoginForm.module.css";
 import * as Yup from "yup";
 import { ErrorMessage } from "formik";
-import { useDispatch } from "react-redux";
-import { addContact } from "../../redux/contacts/operations";
+// import { useDispatch } from "react-redux";
+// import { addContact } from "../../redux/contacts/operations";
 
 const initialValues = {
-  name: "",
-  number: "",
+  email: "",
+  password: "",
 };
 
 const FeedbackSchema = Yup.object().shape({
-  name: Yup.string()
-    .min(3, "Too Short!")
+  email: Yup.string()
+    .min(8, "Too Short!")
     .max(30, "Too Long!")
     .required("Required"),
-  number: Yup.string()
+  password: Yup.string()
     .min(5, "Too Short!")
     .max(30, "Too Long!")
     .required("Required"),
 });
 
-export default function ContactForm() {
-  const dispatch = useDispatch();
+export default function LoginPage() {
+  // const dispatch = useDispatch();
+
+  // const handleSubmit = (values, actions) => {
+  //   dispatch(addContact(values));
+  //   actions.resetForm();
+  // };
 
   const handleSubmit = (values, actions) => {
-    dispatch(addContact(values));
+    console.log(values);
     actions.resetForm();
   };
 
@@ -40,40 +43,38 @@ export default function ContactForm() {
       <Form className={css.form}>
         <ul className={css.list}>
           <li>
-            <label htmlFor="name" className={css.label}>
-              <FaUser size="14" color="rgb(9, 90, 33)" padding="10px" />
-              Name
+            <label htmlFor="email" className={css.label}>
+              Email
             </label>
             <Field
               type="text"
-              name="name"
-              id="name"
+              name="email"
+              id="email"
               className={css.field}
               autoComplete="off"
             />
-            <ErrorMessage name="name" component="span" className={css.error} />
+            <ErrorMessage name="email" component="span" className={css.error} />
           </li>
           <li>
-            <label htmlFor="number" className={css.label}>
-              <BiSolidPhone size="18" color="rgb(9, 90, 33)" />
-              Phone
+            <label htmlFor="password" className={css.label}>
+              Password
             </label>
             <Field
               type="text"
-              name="number"
-              id="number"
+              name="password"
+              id="password"
               className={css.field}
               autoComplete="off"
             />
             <ErrorMessage
-              name="number"
+              name="password"
               component="span"
               className={css.error}
             />
           </li>
         </ul>
         <button type="submit" className={css.btn}>
-          Add contact
+          Log In
         </button>
       </Form>
     </Formik>
