@@ -3,17 +3,17 @@ import { Formik, Form, Field } from "formik";
 import css from "./RegistrationForm.module.css";
 import * as Yup from "yup";
 import { ErrorMessage } from "formik";
-// import { useDispatch } from "react-redux";
-// import { addContact } from "../../redux/contacts/operations";
+import { useDispatch } from "react-redux";
+import { register } from "../../redux/auth/operations";
 
 const initialValues = {
-  username: "",
+  name: "",
   email: "",
   password: "",
 };
 
 const FeedbackSchema = Yup.object().shape({
-  username: Yup.string()
+  name: Yup.string()
     .min(3, "Too Short!")
     .max(30, "Too Long!")
     .required("Required"),
@@ -28,14 +28,10 @@ const FeedbackSchema = Yup.object().shape({
 });
 
 export default function RegistrationPage() {
-  // const dispatch = useDispatch();
-
-  // const handleSubmit = (values, actions) => {
-  //   dispatch(addContact(values));
-  //   actions.resetForm();
-  // };
+  const dispatch = useDispatch();
 
   const handleSubmit = (values, actions) => {
+    dispatch(register(values));
     console.log(values);
     actions.resetForm();
   };
@@ -50,19 +46,19 @@ export default function RegistrationPage() {
         <Form className={css.form}>
           <ul className={css.list}>
             <li>
-              <label htmlFor="username" className={css.label}>
+              <label htmlFor="name" className={css.label}>
                 {/* <FaUser size="14" color="rgb(9, 90, 33)" padding="10px" /> */}
                 Username
               </label>
               <Field
                 type="text"
-                name="username"
-                id="username"
+                name="name"
+                id="name"
                 className={css.field}
-                autoComplete="off"
+                autoComplete="on"
               />
               <ErrorMessage
-                name="username"
+                name="name"
                 component="span"
                 className={css.error}
               />
@@ -76,7 +72,7 @@ export default function RegistrationPage() {
                 name="email"
                 id="email"
                 className={css.field}
-                autoComplete="off"
+                autoComplete="on"
               />
               <ErrorMessage
                 name="email"

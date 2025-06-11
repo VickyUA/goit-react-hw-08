@@ -2,8 +2,8 @@ import { Formik, Form, Field } from "formik";
 import css from "./LoginForm.module.css";
 import * as Yup from "yup";
 import { ErrorMessage } from "formik";
-// import { useDispatch } from "react-redux";
-// import { addContact } from "../../redux/contacts/operations";
+import { useDispatch } from "react-redux";
+import { logIn } from "../../redux/auth/operations";
 
 const initialValues = {
   email: "",
@@ -22,15 +22,10 @@ const FeedbackSchema = Yup.object().shape({
 });
 
 export default function LoginPage() {
-  // const dispatch = useDispatch();
-
-  // const handleSubmit = (values, actions) => {
-  //   dispatch(addContact(values));
-  //   actions.resetForm();
-  // };
+  const dispatch = useDispatch();
 
   const handleSubmit = (values, actions) => {
-    console.log(values);
+    dispatch(logIn(values));
     actions.resetForm();
   };
 
@@ -51,7 +46,7 @@ export default function LoginPage() {
               name="email"
               id="email"
               className={css.field}
-              autoComplete="off"
+              autoComplete="on"
             />
             <ErrorMessage name="email" component="span" className={css.error} />
           </li>
