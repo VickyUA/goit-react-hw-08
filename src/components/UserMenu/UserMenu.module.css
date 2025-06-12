@@ -1,8 +1,16 @@
 .wrapper {
   display: flex;
   gap: 15px;
+  color: rgb(109, 7, 33);
 }
 
 .btn {
-  height: 25px;
+  height: 22px;
+  color: rgb(3, 51, 16);
+  font-weight: 600;
+  cursor: pointer;
+  font-size: 15px;
+  text-decoration: underline;
+  border: 1px solid rgb(3, 51, 16);
+  border-radius: 4px;
 }

@@ -1,3 +1,4 @@
+import toast from "react-hot-toast";
 import { Formik, Form, Field } from "formik";
 import { FaUser } from "react-icons/fa";
 import { BiSolidPhone } from "react-icons/bi";
@@ -27,7 +28,9 @@ export default function ContactForm() {
   const dispatch = useDispatch();
 
   const handleSubmit = (values, actions) => {
-    dispatch(addContact(values));
+    dispatch(addContact(values))
+      .unwrap()
+      .then(() => toast.success("Successfully added"));
     actions.resetForm();
   };
 

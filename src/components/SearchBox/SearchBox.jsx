@@ -8,7 +8,6 @@ export default function SearchBox() {
   const handleSearch = (e) => {
     const inputValue = e.target.value;
     dispatch(changeFilter(inputValue));
-    console.log(inputValue);
   };
 
   return (

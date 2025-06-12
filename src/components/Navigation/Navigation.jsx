@@ -8,7 +8,9 @@ export default function Navigation() {
 
   return (
     <nav className={css.wrapper}>
-      <NavLink to="/">Home</NavLink>
+      <NavLink to="/" className={css.link}>
+        Home
+      </NavLink>
       {isLoggedIn && <NavLink to="/contacts">Contacts</NavLink>}
     </nav>
   );
