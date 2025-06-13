@@ -32,7 +32,6 @@ export default function RegistrationPage() {
 
   const handleSubmit = (values, actions) => {
     dispatch(register(values));
-    console.log(values);
     actions.resetForm();
   };
 

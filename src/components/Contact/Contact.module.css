@@ -1,18 +1,23 @@
 .cardWrapper {
   display: flex;
-  gap: 20px;
+  gap: 60px;
   align-items: center;
-  justify-content: space-between;
-}
-
-.btn {
-  background-color: rgb(255, 236, 215);
-  border-radius: 3px;
-  border: none;
+  justify-content: space-evenly;
 }
 
 .text {
   display: flex;
   gap: 10px;
   align-items: baseline;
+}
+
+.btn {
+  background-color: rgb(255, 236, 215);
+  border: none;
+  cursor: pointer;
+}
+
+.btnWrapper {
+  display: flex;
+  flex-direction: column;
 }

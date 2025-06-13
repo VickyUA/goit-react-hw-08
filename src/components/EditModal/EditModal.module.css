@@ -1,0 +1,39 @@
+.btn {
+  background-color: inherit;
+  border: none;
+  cursor: pointer;
+}
+
+.modalWrapper {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  align-items: center;
+}
+
+.btnWrapper {
+  display: flex;
+  gap: 30px;
+}
+
+.modal {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  right: auto;
+  bottom: auto;
+  margin-right: "-50%";
+  transform: translate(-50%, -50%);
+  background-color: rgba(255, 239, 213, 0.973);
+  padding: 15px;
+  border-radius: 5px;
+}
+
+.overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background-color: rgb(149, 146, 151, 0.3);
+}

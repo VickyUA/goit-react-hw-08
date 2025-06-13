@@ -17,6 +17,23 @@ const slice = createSlice({
     items: [],
     loading: false,
     error: null,
+    deleteModalIsOpen: false,
+    editModalIsOpen: false,
+  },
+
+  reducers: {
+    openDeleteModal(state) {
+      state.deleteModalIsOpen = true;
+    },
+    closeDeleteModal(state) {
+      state.deleteModalIsOpen = false;
+    },
+    openEditModal(state) {
+      state.editModalIsOpen = true;
+    },
+    closeEditModal(state) {
+      state.editModalIsOpen = false;
+    },
   },
 
   extraReducers: (builder) => {
@@ -49,5 +66,12 @@ const slice = createSlice({
       });
   },
 });
+
+export const {
+  openDeleteModal,
+  closeDeleteModal,
+  openEditModal,
+  closeEditModal,
+} = slice.actions;
 
 export default slice.reducer;

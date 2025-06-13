@@ -1,10 +1,12 @@
-import toast, { Toaster } from "react-hot-toast";
 import { useDispatch } from "react-redux";
-import { deleteContact } from "../../redux/contacts/operations";
+import { openDeleteModal, openEditModal } from "../../redux/contacts/slice";
 import css from "./Contact.module.css";
 import { FaUser } from "react-icons/fa";
 import { BiSolidPhone } from "react-icons/bi";
 import { MdDeleteForever } from "react-icons/md";
+import { FaUserEdit } from "react-icons/fa";
+import DeleteModal from "../DeleteModal/DeleteModal";
+import EditModal from "../EditModal/EditModal";
 
 export default function Contact({ name, number, id }) {
   const dispatch = useDispatch();
@@ -21,18 +23,24 @@ export default function Contact({ name, number, id }) {
           {number}
         </p>
       </div>
-      <button
-        type="button"
-        className={css.btn}
-        onClick={() =>
-          dispatch(deleteContact(id))
-            .unwrap()
-            .then(() => toast.success("Successfully deleted"))
-        }
-      >
-        <MdDeleteForever size="22" color="rgb(9, 90, 33)" />
-      </button>
-      <Toaster />
+      <div className={css.btnWrapper}>
+        <button
+          type="button"
+          className={css.btn}
+          onClick={() => dispatch(openEditModal())}
+        >
+          <FaUserEdit size="20" color="rgb(9, 90, 33)" />
+        </button>
+        <button
+          type="button"
+          className={css.btn}
+          onClick={() => dispatch(openDeleteModal())}
+        >
+          <MdDeleteForever size="22" color="rgb(9, 90, 33)" />
+        </button>
+      </div>
+      <DeleteModal id={id} />
+      <EditModal id={id} />
     </div>
   );
 }

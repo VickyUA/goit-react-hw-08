@@ -55,7 +55,7 @@ export default function LoginPage() {
               Password
             </label>
             <Field
-              type="text"
+              type="password"
               name="password"
               id="password"
               className={css.field}

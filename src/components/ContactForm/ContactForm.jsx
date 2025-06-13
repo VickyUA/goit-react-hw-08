@@ -59,7 +59,7 @@ export default function ContactForm() {
           <li>
             <label htmlFor="number" className={css.label}>
               <BiSolidPhone size="18" color="rgb(9, 90, 33)" />
-              Phone
+              Number
             </label>
             <Field
               type="text"
