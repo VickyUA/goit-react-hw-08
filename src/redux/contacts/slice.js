@@ -71,15 +71,17 @@ const slice = createSlice({
         state.items = [];
         state.error = null;
       })
+      .addCase(editContact.pending, handlePending)
       .addCase(editContact.fulfilled, (state, action) => {
         state.loading = false;
         state.error = null;
-        state.items.push(action.payload);
+
+        const index = state.items.findIndex(
+          (contact) => contact.id === action.payload.id
+        );
+        state.items.splice(index, 1, action.payload);
       })
-      .addCase(editContact.rejected, (state, action) => {
-        state.loading = false;
-        state.error = action.payload;
-      });
+      .addCase(editContact.rejected, handleRejected);
   },
 });
 

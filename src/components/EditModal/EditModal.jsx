@@ -19,11 +19,11 @@ Modal.setAppElement("#root");
 const FeedbackSchema = Yup.object().shape({
   name: Yup.string()
     .min(3, "Too Short!")
-    .max(30, "Too Long!")
+    .max(23, "Too Long!")
     .required("Required"),
   number: Yup.string()
     .min(5, "Too Short!")
-    .max(30, "Too Long!")
+    .max(23, "Too Long!")
     .required("Required"),
 });
 

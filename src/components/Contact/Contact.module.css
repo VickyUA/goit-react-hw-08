@@ -1,12 +1,11 @@
 .cardWrapper {
   display: flex;
-  gap: 60px;
   justify-content: space-between;
 }
 
 .text {
   display: flex;
-  gap: 10px;
+  gap: 5px;
   align-items: baseline;
 }
 
