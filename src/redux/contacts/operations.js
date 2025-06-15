@@ -45,19 +45,22 @@ export const deleteContact = createAsyncThunk(
   }
 );
 
-export const editContact = createAsyncThunk(
-  "contacts/editContact",
-  async () => {}
-);
-
 // export const editContact = createAsyncThunk(
 //   "contacts/editContact",
-//   async (text, thunkApi) => {
-//     try {
-//       const response = await axios.post("/contacts", text);
-//       return response.data;
-//     } catch (e) {
-//       return thunkApi.rejectWithValue(e.message);
-//     }
+//   async (contactId, text) => {
+//     const response = await axios.patch(`/contacts/${contactId}`, text);
+//     return response.data;
 //   }
 // );
+
+export const editContact = createAsyncThunk(
+  "contacts/editContact",
+  async (text, thunkApi) => {
+    try {
+      const response = await axios.patch(`/contacts/${text.id}`, text.value);
+      return response.data;
+    } catch (e) {
+      return thunkApi.rejectWithValue(e.message);
+    }
+  }
+);

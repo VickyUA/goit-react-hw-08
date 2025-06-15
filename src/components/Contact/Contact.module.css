@@ -1,8 +1,7 @@
 .cardWrapper {
   display: flex;
   gap: 60px;
-  align-items: center;
-  justify-content: space-evenly;
+  justify-content: space-between;
 }
 
 .text {

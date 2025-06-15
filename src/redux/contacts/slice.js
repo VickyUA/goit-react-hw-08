@@ -1,5 +1,10 @@
 import { createSlice } from "@reduxjs/toolkit";
-import { fetchContacts, addContact, deleteContact } from "./operations";
+import {
+  fetchContacts,
+  addContact,
+  deleteContact,
+  editContact,
+} from "./operations";
 import { logOut } from "../auth/operations";
 
 const handlePending = (state) => {
@@ -19,6 +24,7 @@ const slice = createSlice({
     error: null,
     deleteModalIsOpen: false,
     editModalIsOpen: false,
+    itemToEdit: {},
   },
 
   reducers: {
@@ -28,8 +34,9 @@ const slice = createSlice({
     closeDeleteModal(state) {
       state.deleteModalIsOpen = false;
     },
-    openEditModal(state) {
+    openEditModal(state, action) {
       state.editModalIsOpen = true;
+      state.itemToEdit = action.payload;
     },
     closeEditModal(state) {
       state.editModalIsOpen = false;
@@ -63,6 +70,15 @@ const slice = createSlice({
       .addCase(logOut.fulfilled, (state) => {
         state.items = [];
         state.error = null;
+      })
+      .addCase(editContact.fulfilled, (state, action) => {
+        state.loading = false;
+        state.error = null;
+        state.items.push(action.payload);
+      })
+      .addCase(editContact.rejected, (state, action) => {
+        state.loading = false;
+        state.error = action.payload;
       });
   },
 });

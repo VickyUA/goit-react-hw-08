@@ -12,35 +12,37 @@ export default function Contact({ name, number, id }) {
   const dispatch = useDispatch();
 
   return (
-    <div className={css.cardWrapper}>
-      <div>
-        <p className={css.text}>
-          <FaUser size="14" color="rgb(9, 90, 33)" padding="10px" />
-          {name}
-        </p>
-        <p className={css.text}>
-          <BiSolidPhone size="18" color="rgb(9, 90, 33)" />
-          {number}
-        </p>
-      </div>
-      <div className={css.btnWrapper}>
-        <button
-          type="button"
-          className={css.btn}
-          onClick={() => dispatch(openEditModal())}
-        >
-          <FaUserEdit size="20" color="rgb(9, 90, 33)" />
-        </button>
-        <button
-          type="button"
-          className={css.btn}
-          onClick={() => dispatch(openDeleteModal())}
-        >
-          <MdDeleteForever size="22" color="rgb(9, 90, 33)" />
-        </button>
+    <>
+      <div className={css.cardWrapper}>
+        <div>
+          <p className={css.text}>
+            <FaUser size="14" color="rgb(9, 90, 33)" padding="10px" />
+            {name}
+          </p>
+          <p className={css.text}>
+            <BiSolidPhone size="18" color="rgb(9, 90, 33)" />
+            {number}
+          </p>
+        </div>
+        <div className={css.btnWrapper}>
+          <button
+            type="button"
+            className={css.btn}
+            onClick={() => dispatch(openEditModal({ name, number, id }))}
+          >
+            <FaUserEdit size="20" color="rgb(9, 90, 33)" />
+          </button>
+          <button
+            type="button"
+            className={css.btn}
+            onClick={() => dispatch(openDeleteModal())}
+          >
+            <MdDeleteForever size="22" color="rgb(9, 90, 33)" />
+          </button>
+        </div>
       </div>
       <DeleteModal id={id} />
-      <EditModal id={id} />
-    </div>
+      <EditModal />
+    </>
   );
 }

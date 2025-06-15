@@ -2,7 +2,7 @@ import Modal from "react-modal";
 import toast, { Toaster } from "react-hot-toast";
 import {
   selectEditModalIsOpen,
-  selectContacts,
+  selectItemToEdit,
 } from "../../redux/contacts/selectors";
 import { closeEditModal } from "../../redux/contacts/slice";
 import { useDispatch, useSelector } from "react-redux";
@@ -16,11 +16,6 @@ import * as Yup from "yup";
 
 Modal.setAppElement("#root");
 
-const initialValues = {
-  name: "hey",
-  number: "",
-};
-
 const FeedbackSchema = Yup.object().shape({
   name: Yup.string()
     .min(3, "Too Short!")
@@ -32,17 +27,23 @@ const FeedbackSchema = Yup.object().shape({
     .required("Required"),
 });
 
-export default function EditModal({ id }) {
+export default function EditModal() {
   const dispatch = useDispatch();
 
   const editModalIsOpen = useSelector(selectEditModalIsOpen);
-  const contacts = useSelector(selectContacts);
-  console.log(contacts);
+  const itemToEdit = useSelector(selectItemToEdit);
+
+  const initialValues = {
+    name: itemToEdit.name,
+    number: itemToEdit.number,
+  };
 
   const handleSubmit = (values, actions) => {
-    dispatch(editContact(values))
+    const updatedContact = { id: itemToEdit.id, value: values };
+    dispatch(editContact(updatedContact))
       .unwrap()
       .then(() => toast.success("Successfully edited"));
+    dispatch(closeEditModal());
     actions.resetForm();
   };
 
@@ -98,11 +99,7 @@ export default function EditModal({ id }) {
                   />
                 </li>
               </ul>
-              <button
-                type="submit"
-                className={css.btn}
-                onClick={() => dispatch(closeEditModal())}
-              >
+              <button type="submit" className={css.btn}>
                 Edit contact
               </button>
             </Form>

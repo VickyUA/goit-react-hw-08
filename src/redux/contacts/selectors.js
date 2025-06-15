@@ -7,6 +7,7 @@ export const selectError = (state) => state.contacts.error;
 export const selectDeleteModalIsOpen = (state) =>
   state.contacts.deleteModalIsOpen;
 export const selectEditModalIsOpen = (state) => state.contacts.editModalIsOpen;
+export const selectItemToEdit = (state) => state.contacts.itemToEdit;
 
 export const selectFilteredContacts = createSelector(
   [selectContacts, selectNameFilter],
